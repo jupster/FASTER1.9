@@ -46,10 +46,10 @@ namespace FASTER.Models
         private int    lobbyIdleTimeout   = 300;
         private bool   autoSelectMission  = true;
         private bool   randomMissionOrder = true;
-        private int    briefingTimeOut = 60; 	//
-        private int    roleTimeOut = 90; 	 	// These are BI base figues
-        private int    votingTimeOut = 60; 	 	//
-        private int    debriefingTimeOut = 45; //
+        private int    briefingTimeOut = 60;     //
+        private int    roleTimeOut = 90;         // These are BI base figues
+        private int    votingTimeOut = 60;       //
+        private int    debriefingTimeOut = 45;   //
         private bool   LogObjectNotFound = true;			// logging enabled
         private bool   SkipDescriptionParsing = false;		// parse description.ext
         private bool   ignoreMissionLoadErrors = false;		// do not ingore errors
@@ -81,18 +81,22 @@ namespace FASTER.Models
         private string onUnsignedData = "kick (_this select 0)";
         private string onUserKicked;
 
+        //Missions
         private bool                 missionSelectorChecked;
         private string               missionContentOverride;
         private List<ProfileMission> _missions = new();
         private bool                 autoInit;
         private string               difficulty = "Custom";
 
+        //Performance
         private bool   maxMemOverride;
         private uint   maxMem = 1024;
         private bool   cpuCountOverride;
         private ushort cpuCount;
         private string commandLineParams;
 
+        //output n override
+        private string serverContentOverride;
         private string serverCfgContent;
 
 
@@ -690,6 +694,16 @@ namespace FASTER.Models
                 RaisePropertyChanged("MissionContentOverride");
             }
         }
+		
+        public string ServerContentOverride
+        {
+            get => serverContentOverride;
+            set
+            {
+                serverContentOverride = value;
+                RaisePropertyChanged("ServerContentOverride");
+            }
+        }
 
         public bool AutoInit
         {
@@ -810,6 +824,7 @@ namespace FASTER.Models
         {
             RaisePropertyChanged("MissionChecked");
             RaisePropertyChanged("MissionContentOverride");
+            RaisePropertyChanged("ServerContentOverride");
         }
 
         public string ProcessFile()
@@ -844,7 +859,7 @@ namespace FASTER.Models
                           + $"hostname = \"{hostname}\";\t\t// The name of the server that shall be displayed in the public server list\r\n"
                           + $"password = \"{password}\";\t\t\t\t\t// Password for joining, eg connecting to the server\r\n"
                           + $"passwordAdmin = \"{passwordAdmin}\";\t\t\t\t// Password to become server admin. When you're in Arma MP and connected to the server, type '#login xyz'\r\n"
-                          + $"serverCommandPassword = \"{serverCommandPassword}\";               // Password required by alternate syntax of [[serverCommand]] server-side scripting.\r\n"
+                          + $"serverCommandPassword = \"{serverCommandPassword}\";  // Password required by alternate syntax of [[serverCommand]] server-side scripting.\r\n"
                           + $"logFile = \"{logFile}\";\t\t\t// Tells ArmA-server where the logfile should go and what it should be called\r\n"
                           + $"admins[] =  { "{\n\t\"" + string.Join("\",\n\t\"", admins) + "\"\n}" };\r\n"
                           + "\r\n"
@@ -893,7 +908,7 @@ namespace FASTER.Models
                           + $"kickClientsOnSlowNetwork[] = {( kickClientOnSlowNetwork ? "{ 1, 1, 1, 1 }" : "{ 0, 0, 0, 0 }")}; //Defines if {{<MaxPing>, <MaxPacketLoss>, <MaxDesync>, <DisconnectTimeout>}} will be logged (0) or kicked (1)\r\n"
                           + $"lobbyIdleTimeout = {lobbyIdleTimeout}; // The amount of time the server will wait before force-starting a mission without a logged-in Admin.\r\n"
 						  + $"roleTimeOut = {roleTimeOut}; // The amount of time a player can sit in role selection before being kicked.\r\n"
-						  + $"debriefingTimeOut = {debriefingTimeOut}; // // The amount of time a player can sit in breifing mode before being kicked.\r\n"
+						  + $"debriefingTimeOut = {debriefingTimeOut}; // The amount of time a player can sit in debriefing mode before being kicked.\r\n"
 						  + $"briefingTimeOut = {briefingTimeOut}; // The amount of time a player can sit in briefing mode before being kicked.\r\n"
                           + $"armaUnitsTimeout = {armaUnitsTimeout}; // Defines how long the player will be stuck connecting and wait for armaUnits data. Player will be notified if timeout elapsed and no units data was received.\r\n"
                           + "\r\n"
@@ -914,6 +929,7 @@ namespace FASTER.Models
                           + $"autoSelectMission = {autoSelectMission}; // Server auto selects next mission in cycle\r\n"
                           + "\r\n"
                           + $"{MissionContentOverride}\t\t\t\t// An empty Missions class means there will be no mission rotation\r\n"
+                          + $"ServerContentOverride = {ServerContentOverride};\t\t\t\t// An empty Server.Cfg Append will have no effects\r\n"
                           + "\r\n"
                           + "missionWhitelist[] = {};\r\n"
                           + "// An empty whitelist means there is no restriction on what missions available"

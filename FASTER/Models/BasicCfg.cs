@@ -16,7 +16,8 @@ namespace FASTER.Models
     {
         private uint   viewDistance = 2000;
         private double terrainGrid  = 25;
-
+		
+        //Performance
         private ushort maxMsgSend           = 128;
         private ushort maxSizeGuaranteed    = 256;
         private ushort maxSizeNonguaranteed = 512;
@@ -27,6 +28,8 @@ namespace FASTER.Models
         private ushort maxCustomFileSize    = 1024;
         private ushort maxPacketSize        = 1400;
 
+        //output n override
+        private string basicContentOverride;
         private string basicContent;
 
         public string BasicContent
@@ -36,6 +39,16 @@ namespace FASTER.Models
             {
                 basicContent = value;
                 RaisePropertyChanged("BasicContent");
+            }
+        }
+		
+		public string BasicContentOverride
+        {
+            get => basicContentOverride;
+            set
+            {
+                basicContentOverride = value;
+                RaisePropertyChanged("BasicContentOverride");
             }
         }
 
@@ -214,7 +227,9 @@ namespace FASTER.Models
                           + $"MinErrorToSendNear = {minErrorToSendNear.ToString(CultureInfo.InvariantCulture)};\t\t// Minimal error to send updates across network for near units. Using larger value can reduce traffic sent for near units. Used to control client to server traffic as well. Default: 0.01\r\n"
                           + "\r\n"
                           + $"MaxCustomFileSize = {maxCustomFileSize * 1000};\t\t\t// (bytes) Users with custom face or custom sound larger than this size are kicked when trying to connect.\r\n" 
-                          + $"class sockets{{ maxPacketSize = {maxPacketSize};}};";
+                          + $"class sockets{{ maxPacketSize = {maxPacketSize};}};"
+                          + "\r\n"
+                          + $"BasicContentOverride = {BasicContentOverride};\t\t\t\t// An empty Basic.Cfg Append will have no effects\r\n";
             return output;
         }
 
