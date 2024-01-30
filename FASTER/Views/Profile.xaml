@@ -804,21 +804,25 @@
                                     </Grid>
                                 </GroupBox>
                             </StackPanel>
-<!-- <TextBox Text="{Binding Path=Profile.ServerCfg.ServerOverrideContent}" MinHeight="50" Margin="3,5" mah:TextBoxHelper.UseFloatingWatermark="True" mah:TextBoxHelper.Watermark="Server.Cfg Appends" AcceptsTab="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/> -->
                         </Grid>
                     </ScrollViewer>
 
                     <Grid Grid.Row="1">
+					    <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
                         <Grid.Style>
                             <Style TargetType="Grid">
                                 <Setter Property="Margin" Value="5"/>
                                 <Setter Property="Background" Value="{StaticResource MahApps.Brushes.Window.Background}"></Setter>
-                            </Style>
+						    </Style>
                         </Grid.Style>
                         <Expander Header="Server.cfg output" MaxHeight="400">
                             <TextBox Text="{Binding Path=Profile.ServerCfg.ServerCfgContent}" FontFamily="GenericMonospace" AcceptsTab="True" AcceptsReturn="True" IsManipulationEnabled="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
                         </Expander>
-                    </Grid>
+						<TextBox Text="{Binding Path=Profile.ServerCfg.ServerOverrideContent}" Grid.Row="4" MinHeight="50" Margin="3,5" mah:TextBoxHelper.UseFloatingWatermark="True" mah:TextBoxHelper.Watermark="Server.Cfg Appends" AcceptsTab="True" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+					</Grid>
                 </Grid>
             </TabItem>
             <!--#endregion-->

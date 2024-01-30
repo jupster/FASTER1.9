@@ -99,8 +99,6 @@ namespace FASTER.Models
         private string serverContentOverride;
         private string serverCfgContent;
 
-
-
         #region Server Options
         public string PasswordAdmin
         {
@@ -694,17 +692,7 @@ namespace FASTER.Models
                 RaisePropertyChanged("MissionContentOverride");
             }
         }
-		
-        public string ServerContentOverride
-        {
-            get => serverContentOverride;
-            set
-            {
-                serverContentOverride = value;
-                RaisePropertyChanged("ServerContentOverride");
-            }
-        }
-
+        
         public bool AutoInit
         {
             get => autoInit;
@@ -803,7 +791,7 @@ namespace FASTER.Models
         }
 
         #endregion
-
+        
         public string ServerCfgContent
         {
             get => serverCfgContent;
@@ -813,7 +801,17 @@ namespace FASTER.Models
                 RaisePropertyChanged("ServerCfgContent");
             }
         }
-
+        
+        public string ServerContentOverride
+        {
+            get => serverContentOverride;
+            set
+            {
+                serverContentOverride = value;
+                RaisePropertyChanged("ServerContentOverride");
+            }
+        }
+        
         public ServerCfg()
         {
             if(string.IsNullOrWhiteSpace(serverCfgContent))
