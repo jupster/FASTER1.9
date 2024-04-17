@@ -62,7 +62,7 @@ namespace FASTER.Models
 
         public void DeleteSteamMod(uint workshopId)
         {
-            
+
 
             try
             {
@@ -75,7 +75,7 @@ namespace FASTER.Models
                         Directory.Delete(item.Path, true);
                     currentProfiles.ArmaMods.Remove(item);
                 }
-                
+
                 Properties.Settings.Default.Save();
             }
             catch
@@ -107,8 +107,8 @@ namespace FASTER.Models
         private bool   _isSelected;
 
 
-        public uint   WorkshopId       
-        { 
+        public uint   WorkshopId
+        {
             get => _workshopId;
             set
             {
