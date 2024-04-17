@@ -6,7 +6,7 @@
 ![GitHub](https://img.shields.io/github/license/Foxlider/FASTER.svg?style=flat-square)
 [![GitHub release](https://img.shields.io/github/release/Foxlider/FASTER.svg?logo=github&style=flat-square)](https://GitHub.com/Foxlider/FASTER/releases/)  
 [![Github total downloads](https://img.shields.io/github/downloads/Foxlider/FASTER/total.svg?logo=github&style=flat-square)](https://GitHub.com/Foxlider/FASTER/releases/)
-[![Github latest downloads](https://img.shields.io/github/downloads/jupster/FASTER1.9/latest/total.svg?logo=github&style=flat-square)](https://GitHub.com/jupster/FASTER1.9/releases/)
+[![Github latest downloads](https://img.shields.io/github/downloads/Foxlider/FASTER/latest/total.svg?logo=github&style=flat-square)](https://GitHub.com/Foxlider/FASTER/releases/)
   
 ***Azure***  
 [![Build Status](https://dev.azure.com/keelah/FASTER/_apis/build/status/Faster%20Release%20Builder?branchName=master)](https://dev.azure.com/keelah/FASTER/_build/latest?definitionId=8&branchName=master)
